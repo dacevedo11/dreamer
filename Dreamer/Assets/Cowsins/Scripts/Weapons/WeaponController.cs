@@ -547,6 +547,18 @@ namespace cowsins
             events.OnHit.Invoke();
             GameObject impact = null, impactBullet = null;
 
+            // Check if the hit object is a teddy bear
+            if (h.collider.CompareTag("TeddyBear"))
+            {
+                // Call the OnHit() method on the teddy bear to play sound and destroy it
+                TeddyBear teddyBear = h.collider.GetComponent<TeddyBear>();
+                if (teddyBear != null)
+                {
+                    teddyBear.OnHit();
+                }
+                return; // Exit to prevent further processing if it's a teddy bear
+            }
+
             // Check the passed layer
             // If it matches any of the provided layers by FPS Engine, then:
             // Instantiate according effect and rotate it accordingly to the surface.
